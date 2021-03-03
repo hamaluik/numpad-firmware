@@ -94,32 +94,173 @@
 #define NOTE_DS8 4978
 #define REST      0
 
-static const int _cantina[] = {
-  // Cantina band - Star wars 
-  // Score available at https://musescore.com/user/6795541/scores/1606876
-  NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
-  NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8, 
-  NOTE_B4,8,  NOTE_AS4,8, NOTE_B4,8, NOTE_A4,8, REST,8, NOTE_GS4,8, NOTE_A4,8, NOTE_G4,8,
-  NOTE_G4,4,  NOTE_E4,-2, 
-  NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
-  NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8,
+// adapted from https://dragaosemchama.com/en/2019/02/songs-for-arduino/
 
-  NOTE_A4,-4, NOTE_A4,-4, NOTE_GS4,8, NOTE_A4,-4,
-  NOTE_D5,8,  NOTE_C5,-4, NOTE_B4,-4, NOTE_A4,-4,
-  NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
-  NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8,
-  NOTE_D5,4, NOTE_D5,-4, NOTE_B4,8, NOTE_A4,-4,
-  NOTE_G4,-4, NOTE_E4,-2,
-  NOTE_E4, 2, NOTE_G4,2,
-  NOTE_B4, 2, NOTE_D5,2,
-  
-  NOTE_F5, -4, NOTE_E5,-4, NOTE_AS4,8, NOTE_AS4,8, NOTE_B4,4, NOTE_G4,4,
+static const int _cantina[] = {
+    // Cantina band - Star wars 
+    // Score available at https://musescore.com/user/6795541/scores/1606876
+    NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
+    NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8, 
+    NOTE_B4,8,  NOTE_AS4,8, NOTE_B4,8, NOTE_A4,8, REST,8, NOTE_GS4,8, NOTE_A4,8, NOTE_G4,8,
+    NOTE_G4,4,  NOTE_E4,-2, 
+    NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
+    NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8,
+
+    NOTE_A4,-4, NOTE_A4,-4, NOTE_GS4,8, NOTE_A4,-4,
+    NOTE_D5,8,  NOTE_C5,-4, NOTE_B4,-4, NOTE_A4,-4,
+    NOTE_B4,-4, NOTE_E5,-4, NOTE_B4,-4, NOTE_E5,-4, 
+    NOTE_B4,8,  NOTE_E5,-4, NOTE_B4,8, REST,8,  NOTE_AS4,8, NOTE_B4,8,
+    NOTE_D5,4, NOTE_D5,-4, NOTE_B4,8, NOTE_A4,-4,
+    NOTE_G4,-4, NOTE_E4,-2,
+    NOTE_E4, 2, NOTE_G4,2,
+    NOTE_B4, 2, NOTE_D5,2,
+
+    NOTE_F5, -4, NOTE_E5,-4, NOTE_AS4,8, NOTE_AS4,8, NOTE_B4,4, NOTE_G4,4,
 };
 static const Song cantina = (Song) {
     .tempo = 140,
-    .notes = _cantina,
-    .num_notes = sizeof(_cantina) / sizeof(_cantina[0]) / 2,
+        .notes = _cantina,
+        .num_notes = sizeof(_cantina) / sizeof(_cantina[0]) / 2,
 };
+
+static const int _happy_birthday[] = {
+    // Happy Birthday
+    // Score available at https://musescore.com/user/8221/scores/26906
+    NOTE_C4,4, NOTE_C4,8, 
+    NOTE_D4,-4, NOTE_C4,-4, NOTE_F4,-4,
+    NOTE_E4,-2, NOTE_C4,4, NOTE_C4,8, 
+    NOTE_D4,-4, NOTE_C4,-4, NOTE_G4,-4,
+    NOTE_F4,-2, NOTE_C4,4, NOTE_C4,8,
+
+    NOTE_C5,-4, NOTE_A4,-4, NOTE_F4,-4, 
+    NOTE_E4,-4, NOTE_D4,-4, NOTE_AS4,4, NOTE_AS4,8,
+    NOTE_A4,-4, NOTE_F4,-4, NOTE_G4,-4,
+    NOTE_F4,-2,
+};
+static const Song happy_birthday = (Song) {
+    .tempo = 140,
+        .notes = _happy_birthday,
+        .num_notes = sizeof(_happy_birthday) / sizeof(_happy_birthday[0]) / 2,
+};
+
+static const int _tetris[] = {
+    //Based on the arrangement at https://www.flutetunes.com/tunes.php?id=192
+
+    NOTE_E5, 4,  NOTE_B4,8,  NOTE_C5,8,  NOTE_D5,4,  NOTE_C5,8,  NOTE_B4,8,
+    NOTE_A4, 4,  NOTE_A4,8,  NOTE_C5,8,  NOTE_E5,4,  NOTE_D5,8,  NOTE_C5,8,
+    NOTE_B4, -4,  NOTE_C5,8,  NOTE_D5,4,  NOTE_E5,4,
+    NOTE_C5, 4,  NOTE_A4,4,  NOTE_A4,8,  NOTE_A4,4,  NOTE_B4,8,  NOTE_C5,8,
+
+    NOTE_D5, -4,  NOTE_F5,8,  NOTE_A5,4,  NOTE_G5,8,  NOTE_F5,8,
+    NOTE_E5, -4,  NOTE_C5,8,  NOTE_E5,4,  NOTE_D5,8,  NOTE_C5,8,
+    NOTE_B4, 4,  NOTE_B4,8,  NOTE_C5,8,  NOTE_D5,4,  NOTE_E5,4,
+    NOTE_C5, 4,  NOTE_A4,4,  NOTE_A4,4, REST, 4,
+
+    NOTE_E5, 4,  NOTE_B4,8,  NOTE_C5,8,  NOTE_D5,4,  NOTE_C5,8,  NOTE_B4,8,
+    NOTE_A4, 4,  NOTE_A4,8,  NOTE_C5,8,  NOTE_E5,4,  NOTE_D5,8,  NOTE_C5,8,
+    NOTE_B4, -4,  NOTE_C5,8,  NOTE_D5,4,  NOTE_E5,4,
+    NOTE_C5, 4,  NOTE_A4,4,  NOTE_A4,8,  NOTE_A4,4,  NOTE_B4,8,  NOTE_C5,8,
+
+    NOTE_D5, -4,  NOTE_F5,8,  NOTE_A5,4,  NOTE_G5,8,  NOTE_F5,8,
+    NOTE_E5, -4,  NOTE_C5,8,  NOTE_E5,4,  NOTE_D5,8,  NOTE_C5,8,
+    NOTE_B4, 4,  NOTE_B4,8,  NOTE_C5,8,  NOTE_D5,4,  NOTE_E5,4,
+    NOTE_C5, 4,  NOTE_A4,4,  NOTE_A4,4, REST, 4,
+
+
+    NOTE_E5,2,  NOTE_C5,2,
+    NOTE_D5,2,   NOTE_B4,2,
+    NOTE_C5,2,   NOTE_A4,2,
+    NOTE_GS4,2,  NOTE_B4,4,  REST,8, 
+    NOTE_E5,2,   NOTE_C5,2,
+    NOTE_D5,2,   NOTE_B4,2,
+    NOTE_C5,4,   NOTE_E5,4,  NOTE_A5,2,
+    NOTE_GS5,2,
+};
+static const Song tetris = (Song) {
+    .tempo = 144,
+        .notes = _tetris,
+        .num_notes = sizeof(_tetris) / sizeof(_tetris[0]) / 2,
+};
+
+static const int _harry_potter[] = {
+  // Hedwig's theme fromn the Harry Potter Movies
+  // Socre from https://musescore.com/user/3811306/scores/4906610
+  
+  REST, 2, NOTE_D4, 4,
+  NOTE_G4, -4, NOTE_AS4, 8, NOTE_A4, 4,
+  NOTE_G4, 2, NOTE_D5, 4,
+  NOTE_C5, -2, 
+  NOTE_A4, -2,
+  NOTE_G4, -4, NOTE_AS4, 8, NOTE_A4, 4,
+  NOTE_F4, 2, NOTE_GS4, 4,
+  NOTE_D4, -1, 
+  NOTE_D4, 4,
+
+  NOTE_G4, -4, NOTE_AS4, 8, NOTE_A4, 4, //10
+  NOTE_G4, 2, NOTE_D5, 4,
+  NOTE_F5, 2, NOTE_E5, 4,
+  NOTE_DS5, 2, NOTE_B4, 4,
+  NOTE_DS5, -4, NOTE_D5, 8, NOTE_CS5, 4,
+  NOTE_CS4, 2, NOTE_B4, 4,
+  NOTE_G4, -1,
+  NOTE_AS4, 4,
+     
+  NOTE_D5, 2, NOTE_AS4, 4,//18
+  NOTE_D5, 2, NOTE_AS4, 4,
+  NOTE_DS5, 2, NOTE_D5, 4,
+  NOTE_CS5, 2, NOTE_A4, 4,
+  NOTE_AS4, -4, NOTE_D5, 8, NOTE_CS5, 4,
+  NOTE_CS4, 2, NOTE_D4, 4,
+  NOTE_D5, -1, 
+  REST,4, NOTE_AS4,4,  
+
+  NOTE_D5, 2, NOTE_AS4, 4,//26
+  NOTE_D5, 2, NOTE_AS4, 4,
+  NOTE_F5, 2, NOTE_E5, 4,
+  NOTE_DS5, 2, NOTE_B4, 4,
+  NOTE_DS5, -4, NOTE_D5, 8, NOTE_CS5, 4,
+  NOTE_CS4, 2, NOTE_AS4, 4,
+  NOTE_G4, -1, 
+};
+static const Song harry_potter = (Song) {
+    .tempo = 144,
+        .notes = _harry_potter,
+        .num_notes = sizeof(_harry_potter) / sizeof(_harry_potter[0]) / 2,
+};
+
+static const int _imperial_march[] = {
+  // Dart Vader theme (Imperial March) - Star wars 
+  // Score available at https://musescore.com/user/202909/scores/1141521
+  // The tenor saxophone part was used
+  
+  NOTE_AS4,8, NOTE_AS4,8, NOTE_AS4,8,//1
+  NOTE_F5,2, NOTE_C6,2,
+  NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F6,2, NOTE_C6,4,  
+  NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F6,2, NOTE_C6,4,  
+  NOTE_AS5,8, NOTE_A5,8, NOTE_AS5,8, NOTE_G5,2, NOTE_C5,8, NOTE_C5,8, NOTE_C5,8,
+  NOTE_F5,2, NOTE_C6,2,
+  NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F6,2, NOTE_C6,4,  
+  
+  NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F6,2, NOTE_C6,4, //8  
+  NOTE_AS5,8, NOTE_A5,8, NOTE_AS5,8, NOTE_G5,2, NOTE_C5,-8, NOTE_C5,16, 
+  NOTE_D5,-4, NOTE_D5,8, NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F5,8,
+  NOTE_F5,8, NOTE_G5,8, NOTE_A5,8, NOTE_G5,4, NOTE_D5,8, NOTE_E5,4,NOTE_C5,-8, NOTE_C5,16,
+  NOTE_D5,-4, NOTE_D5,8, NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F5,8,
+  
+  NOTE_C6,-8, NOTE_G5,16, NOTE_G5,2, REST,8, NOTE_C5,8,//13
+  NOTE_D5,-4, NOTE_D5,8, NOTE_AS5,8, NOTE_A5,8, NOTE_G5,8, NOTE_F5,8,
+  NOTE_F5,8, NOTE_G5,8, NOTE_A5,8, NOTE_G5,4, NOTE_D5,8, NOTE_E5,4,NOTE_C6,-8, NOTE_C6,16,
+  NOTE_F6,4, NOTE_DS6,8, NOTE_CS6,4, NOTE_C6,8, NOTE_AS5,4, NOTE_GS5,8, NOTE_G5,4, NOTE_F5,8,
+  NOTE_C6,1
+};
+static const Song imperial_march = (Song) {
+    .tempo = 108,
+        .notes = _imperial_march,
+        .num_notes = sizeof(_imperial_march) / sizeof(_imperial_march[0]) / 2,
+};
+
+//static const Song all_songs[] = { cantina, happy_birthday, harry_potter, imperial_march };
+//static const uint8_t num_songs = 4;
 
 #endif
 

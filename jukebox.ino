@@ -4,6 +4,8 @@
 #include <WProgram.h>
 #include "jukebox.h"
 
+// adapted from https://dragaosemchama.com/en/2019/02/songs-for-arduino/
+
 static const int pin = 10;
 static Song* current_song = 0;
 static uint32_t last_time = 0, current_delay = 0;

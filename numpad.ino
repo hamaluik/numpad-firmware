@@ -6,11 +6,14 @@
 #define NUM_LAYERS (2)
 
 #define CUSTOM_LAYER (0xb000)
-#define CUSTOM_CANTINA (0xb001)
-#define CUSTOM_BRIGHTNESS_DOWN (0xb002)
-#define CUSTOM_BRIGHTNESS_UP (0xb003)
-#define CUSTOM_COLOUR_PREV (0xb004)
-#define CUSTOM_COLOUR_NEXT (0xb005)
+#define CUSTOM_BRIGHTNESS_DOWN (0xb001)
+#define CUSTOM_BRIGHTNESS_UP (0xb002)
+#define CUSTOM_COLOUR_PREV (0xb003)
+#define CUSTOM_COLOUR_NEXT (0xb004)
+#define CUSTOM_CANTINA (0xbb01)
+#define CUSTOM_HAPPY_BIRTHDAY (0xbb02)
+#define CUSTOM_HARRY_POTTER (0xbb03)
+#define CUSTOM_IMPERIAL_MARCH (0xbb04)
 
 const uint8_t pin_row[] = {0, 5, 6, 7, 8, 9, 11};
 const uint8_t pin_col[] = {3, 2, 1, 4};
@@ -46,11 +49,11 @@ uint16_t keys[NUM_LAYERS][n_rows][n_cols] = {
     {
         {CUSTOM_BRIGHTNESS_DOWN, CUSTOM_BRIGHTNESS_UP, CUSTOM_COLOUR_PREV, CUSTOM_COLOUR_NEXT},
         {KEY_MEDIA_PLAY_PAUSE, CUSTOM_LAYER, MODIFIERKEY_GUI, KEY_MEDIA_STOP},
-        {CUSTOM_CANTINA, KEYPAD_SLASH, KEYPAD_ASTERIX, KEYPAD_MINUS},
+        {CUSTOM_CANTINA, CUSTOM_HAPPY_BIRTHDAY, CUSTOM_HARRY_POTTER, CUSTOM_IMPERIAL_MARCH},
         {KEY_7, KEY_8, KEY_9, KEYPAD_PLUS},
         {KEY_4, KEY_5, KEY_6, KEYPAD_PLUS},
         {KEY_1, KEY_2, KEY_3, KEY_ENTER},
-        {KEY_0, KEY_0, KEY_PERIOD, KEY_ENTER},
+        {KEY_0, KEY_0, KEY_PERIOD, CUSTOM_HAPPY_BIRTHDAY},
     },
 };
 
@@ -60,6 +63,7 @@ uint16_t keys[NUM_LAYERS][n_rows][n_cols] = {
 /*}*/
 
 void setup() {
+    randomSeed(analogRead(0));
     pinMode(13, OUTPUT);
     initialize_leds();
 
@@ -71,6 +75,7 @@ void setup() {
     }
 
     jukebox_init();
+    /*jukebox_play(&all_songs[random(num_songs)]);*/
 }
 
 void read_matrix() {
@@ -212,11 +217,20 @@ void loop() {
         for(uint8_t ci = 0; ci < n_cols; ++ci) {
             if(buttons[ri][ci] == 1 && old_buttons[ri][ci] == 0) {
                 switch(keys[layer][ri][ci]) {
-                    case 0xb000:
+                    case CUSTOM_LAYER:
                         layer = 1;
                         break;
-                    case 0xb001:
+                    case CUSTOM_CANTINA:
                         jukebox_play(&cantina);
+                        break;
+                    case CUSTOM_HAPPY_BIRTHDAY:
+                        jukebox_play(&happy_birthday);
+                        break;
+                    case CUSTOM_HARRY_POTTER:
+                        jukebox_play(&harry_potter);
+                        break;
+                    case CUSTOM_IMPERIAL_MARCH:
+                        jukebox_play(&imperial_march);
                         break;
                     default:
                         Keyboard.press(keys[layer][ri][ci]);
@@ -225,10 +239,13 @@ void loop() {
             }
             else if(buttons[ri][ci] == 0 && old_buttons[ri][ci] == 1) {
                 switch(keys[layer][ri][ci]) {
-                    case 0xb000:
+                    case CUSTOM_LAYER:
                         layer = 0;
                         break;
-                    case 0xb001:
+                    case CUSTOM_CANTINA:
+                    case CUSTOM_HAPPY_BIRTHDAY:
+                    case CUSTOM_HARRY_POTTER:
+                    case CUSTOM_IMPERIAL_MARCH:
                         break;
                     default:
                         Keyboard.release(keys[layer][ri][ci]);
