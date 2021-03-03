@@ -2,7 +2,7 @@ uint32_t hsv_to_rgb(float H, float S, float V) {
     float s = S/100;
     float v = V/100;
     float C = s*v;
-    float X = C*(1-abs(fmod(H/60.0, 2)-1));
+    float X = C*(1-fabs(fmod(H/60.0, 2)-1));
     float m = v-C;
     float r,g,b;
     if(H >= 0 && H < 60){

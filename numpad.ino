@@ -1,4 +1,5 @@
 #include "music.h"
+#include "jukebox.h"
 #include "leds.h"
 #include "colour.h"
 
@@ -53,9 +54,7 @@ void setup() {
     pinMode(pin_col[i], INPUT_PULLUP);
   }
 
-  //cantina();
-  Serial.begin(57600);
-  Serial.println("Hello");
+  jukebox_init();
 }
 
 void read_matrix() {
@@ -174,7 +173,7 @@ void loop() {
             layer = 1;
             break;
           case 0xb001:
-            cantina();
+            jukebox_play(&cantina);
             break;
           default:
             Keyboard.press(keys[layer][ri][ci]);
@@ -199,4 +198,6 @@ void loop() {
   uint8_t b = breathe();
   set_leds(((uint32_t)b << 24) | colour);
   //delay(1);
+
+  jukebox_update();
 }
